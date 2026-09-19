@@ -23,7 +23,7 @@ db.serialize(() => {
     // FORCE UPDATE: Drop the old orders table and create the new one with the 'items' column
     db.run(`DROP TABLE IF EXISTS orders`, () => {
         db.run(`CREATE TABLE orders (id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INTEGER, total REAL, status TEXT, items TEXT)`);
-    });
+    }); 
 
     db.get("SELECT COUNT(*) AS count FROM products", (err, row) => {
         if (row.count === 0) {
@@ -80,6 +80,8 @@ app.get('/api/orders/:userId', (req, res) => {
     });
 });
 
+const PORT = process.env.PORT || 3000;
+
 app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
