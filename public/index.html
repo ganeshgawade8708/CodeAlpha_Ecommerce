@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>CodeAlpha | Store</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- APPLE-STYLE GLOBAL NAV -->
+    <nav class="global-nav">
+        <div class="nav-content">
+            <a href="#" class="logo" onclick="navigateTo('view-home')">CodeAlpha</a>
+            <div class="nav-links">
+                <a href="#" onclick="navigateTo('view-home')">Home</a>
+                <a href="#" id="nav-auth-link" onclick="navigateTo('view-login')">Login</a>
+                <a href="#" onclick="requireAuthTo('view-shop')">Store</a>
+                <!-- Hidden by default, shown after login -->
+                <a href="#" id="nav-cart-link" style="display: none;" onclick="navigateTo('view-cart')">Cart (<span id="cart-count">0</span>)</a>
+                <a href="#" id="nav-orders-link" style="display: none;" onclick="showOrders()">Orders</a>
+            </div>
+            <button id="mobile-menu-btn">☰</button>
+        </div>
+    </nav>
+
+    <!-- PAGE 1: HOME -->
+    <div id="view-home" class="view active">
+        <main class="apple-hero">
+            <div class="hero-text-container">
+                <!--<h2 class="product-name">CodeAlpha Pro</h2>-->
+                <h1 class="headline">CodeAlpha<br>PRO</h1>
+                <div class="cta-group">
+                    <button class="btn-blue" onclick="requireAuthTo('view-shop')">Shop Now</button>
+                    <!-- The "Login to Account >" button was removed from here -->
+                </div>
+            </div>
+        </main>
+    </div>
+    <!-- PAGE 1: HOME -->
+    <div id="view-home" class="view active">
+        <main class="apple-hero">
+            <div class="hero-text-container">
+                <!--<h2 class="product-name">CodeAlpha Pro</h2>-->
+                <h1 class="headline">CodeAlpha<br>PRO</h1>
+                <div class="cta-group">
+                    <button class="btn-blue" onclick="requireAuthTo('view-shop')">Shop Now</button>
+                    <button class="link-blue btn-text" onclick="navigateTo('view-login')">Login to Account &gt;</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- PAGE 2: LOGIN / REGISTER -->
+    <div id="view-login" class="view" style="display: none;">
+        <div class="login-container">
+            <section class="panel login-panel">
+                <h2 class="section-title">Account Access</h2>
+                <p style="color: #86868b; margin-bottom: 24px;">Please sign in to access the store.</p>
+                <div class="form-group">
+                    <input type="text" id="username" placeholder="Username">
+                    <input type="password" id="password" placeholder="Password">
+                    <div class="auth-buttons">
+                        <button class="btn-outline" onclick="register()">Register</button>
+                        <button class="btn-blue" onclick="login()">Sign In</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- PAGE 3: SHOPPING (Products Only) -->
+    <div id="view-shop" class="view" style="display: none;">
+        <div id="ecommerce-app">
+            <div class="dashboard-header">
+                <h2>Welcome, <strong id="current-user"></strong>.</h2>
+                <button class="btn-outline btn-sm" onclick="logout()">Sign Out</button>
+            </div>
+            
+            <section id="store-section" class="panel" style="background: transparent; padding: 0; box-shadow: none;">
+                <h2 class="section-title">The latest. <span style="color: #86868b">Take a look at what's new.</span></h2>
+                <div id="product-list" class="grid"></div>
+            </section>
+        </div>
+    </div>
+
+    <!-- PAGE 4: CART -->
+    <div id="view-cart" class="view" style="display: none;">
+        <div id="ecommerce-app">
+            <section id="cart-section" class="panel cart-panel mx-auto">
+                <h2 class="section-title">Your Bag</h2>
+                <ul id="cart-items"></ul>
+                <div class="cart-footer">
+                    <p>Total: $<span id="cart-total">0.00</span></p>
+                    <button class="btn-blue w-full" onclick="checkout()">Check Out</button>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- PAGE 5: ORDERS (New) -->
+    <div id="view-orders" class="view" style="display: none;">
+        <div id="ecommerce-app">
+            <section class="panel mx-auto">
+                <h2 class="section-title">Your Orders</h2>
+                <ul id="orders-list" class="order-history">
+                    <!-- Orders injected here via JS -->
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <!-- GLOBAL FOOTER -->
+    <footer class="global-footer">
+        <div class="footer-content">
+            <div class="footer-contact">
+                <p>Contact Us: <a href="mailto:ganeshgawade8708@gmail.com">ganeshgawade8708@gmail.com</a></p>
+            </div>
+            <div class="footer-copyright">
+                <p>Copyright &copy; 2026 CodeAlpha Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
